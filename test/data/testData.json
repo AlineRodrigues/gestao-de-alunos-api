@@ -1,0 +1,17 @@
+{
+  "admin": {
+    "email": "admin@escola.com",
+    "senha": "admin123"
+  },
+  "disciplinaId": "disciplina-matematica",
+  "novoAluno": {
+    "nome": "Fulano de Tal",
+    "emailPrefixo": "fulano.teste",
+    "matriculaPrefixo": "TESTE",
+    "senha": "senha123"
+  },
+  "trabalho": {
+    "titulo": "Trabalho de Automação de Testes",
+    "descricao": "Trabalho criado automaticamente pelos testes de API (Mocha + SuperTest + Chai)."
+  }
+}
