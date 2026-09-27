@@ -4,10 +4,6 @@ import app from '../src/app.js';
 import testData from './helpers/testData.js';
 import { loginAsAdmin, loginAsAluno } from './helpers/authHelper.js';
 
-// Sufixo único por execução: garante que email/matrícula do aluno criado
-// neste teste nunca colidam com dados já existentes, permitindo rodar a
-// suíte várias vezes seguidas (localmente ou em execuções distintas da
-// pipeline) sem esbarrar nas regras de unicidade da API (409 Conflict).
 const execucaoId = Date.now();
 
 const dadosNovoAluno = {
