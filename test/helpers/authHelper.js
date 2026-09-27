@@ -2,11 +2,6 @@ import request from 'supertest';
 import app from '../../src/app.js';
 import testData from './testData.js';
 
-/**
- * Helper de login como Administrador.
- * Usa as credenciais do admin pré-cadastrado pelo seed (vindas do JSON de
- * dados de teste) e retorna o token JWT + os dados básicos do usuário.
- */
 export async function loginAsAdmin() {
   const { email, senha } = testData.admin;
 
