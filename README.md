@@ -23,6 +23,11 @@ Toda a API é protegida por autenticação **JWT**, exceto o endpoint de login. 
 de cadastro de administrador — ele já vem pré-cadastrado no banco (veja
 [Autenticação](#autenticação) abaixo).
 
+Além dos recursos acadêmicos, a API oferece `POST /api/pets` e `GET /api/pets`, ambos protegidos
+por JWT. Faça login com `POST /api/auth/login` antes das operações. O plano JMeter com carga
+fechada e aberta está em [`jmeter/pets-load-test.jmx`](jmeter/pets-load-test.jmx); consulte
+[`jmeter/README.md`](jmeter/README.md) para instruções de execução.
+
 O banco de dados é **MongoDB**, acessado via **Mongoose**. Os dados persistem entre reinícios do
 servidor; a carga inicial de dados fake (seed) só é executada uma vez, na primeira vez em que o
 banco está vazio (veja [Dados fake pré-carregados](#dados-fake-pré-carregados) abaixo).

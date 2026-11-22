@@ -21,6 +21,8 @@ servers:
 tags:
   - name: Autenticação
     description: Login de administrador e de aluno. Único grupo de rotas público.
+  - name: Pets
+    description: Cadastro e consulta de pets; ambas as operações exigem autenticação JWT.
   - name: Alunos (Admin)
     description: Cadastro e gestão de alunos. Restrito ao papel "admin".
   - name: Disciplinas (Admin)
@@ -56,6 +58,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoginResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /pets:
+    get:
+      tags: [Pets]
+      summary: Lista os pets cadastrados
+      responses:
+        '200':
+          description: Lista de pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags: [Pets]
+      summary: Cadastra um pet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PetInput'
+      responses:
+        '201':
+          description: Pet criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -735,6 +773,56 @@ components:
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
         usuario:
           $ref: '#/components/schemas/Usuario'
+
+    Pet:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        nome:
+          type: string
+          example: Pipoca
+        especie:
+          type: string
+          example: cachorro
+        raca:
+          type: string
+          nullable: true
+          example: SRD
+        idade:
+          type: integer
+          nullable: true
+          minimum: 0
+          example: 3
+        criadoPor:
+          type: string
+          example: admin-principal
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    PetInput:
+      type: object
+      required: [nome, especie]
+      properties:
+        nome:
+          type: string
+          example: Pipoca
+        especie:
+          type: string
+          example: cachorro
+        raca:
+          type: string
+          nullable: true
+          example: SRD
+        idade:
+          type: integer
+          minimum: 0
+          example: 3
 
     Aluno:
       type: object
